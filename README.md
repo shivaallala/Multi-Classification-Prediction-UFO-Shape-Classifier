@@ -23,6 +23,8 @@ There are two versions of this dataset: scrubbed and complete. The complete data
 3. Do clusters of UFO sightings correlate with landmarks, such as airports or government research centers?
 4. What are the most common UFO descriptions?
 
+**Importance**
+
     - Understanding the patterns and classifications of UFO sightings has several important implications:
 
     - Public Interest and Safety: By identifying patterns in UFO sightings, we can address public curiosity and concerns. If certain shapes or trends correlate with specific times or locations, authorities can better manage public safety and information dissemination.
@@ -34,20 +36,42 @@ There are two versions of this dataset: scrubbed and complete. The complete data
     - Cultural Impact: UFO sightings are a part of modern folklore and cultural identity. This project can provide a data-driven narrative that complements anecdotal evidence, enriching cultural and historical contexts.
 
 
-### Techniques Used
+### Tools and Techniques Used
 
-1. Data Preprocessing:
+1. Tools requirements:
+    - 
+    - 
+
+2. Data Preprocessing:
     - Cleaning and preparing the data.
     - Handling missing values and standardizing formats.
 
-2. Exploratory Data Analysis (EDA):
+3. Exploratory Data Analysis (EDA):
     - Initial examination to uncover basic patterns, anomalies, and insights.
 
-3. Feature Engineering:
+4. Feature Engineering:
     - Creating relevant features to improve model performance.
 
-4. Machine Learning Models:
-    - Multi-Class Classification: Using algorithms like Decision Trees, Random Forest, Support Vector Machines (SVM), and Neural Networks to classify UFO shapes.
+5. Machine Learning Models:
+    - Multi-Class Classification: Using algorithms like Decision Trees, Random Forest, and Support Vector Machines (SVM).
     - Clustering: Using methods like K-Means and DBSCAN to identify patterns and trends.
 
+
+### Expected Results
+
+1. Classification Model:
+    - Develop a robust classification model to predict UFO shapes based on sighting reports.
+
+2. Trend Analysis:
+    - Identify temporal and geographical trends in UFO sightings, such as seasonal patterns and regional hotspots.
+
+3. Correlation Insights:
+    - Analyze correlations between UFO sightings and various landmarks or significant locations.
+
+
+## Data Exploration
+
+Firstly, import all neccessary resources and tools, primarly python packages to preform data transformation and analysis. 
+
+![python packages](./Images/Python%20packages.png)
 
