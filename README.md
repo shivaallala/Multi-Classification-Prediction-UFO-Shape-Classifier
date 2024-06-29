@@ -1,10 +1,10 @@
 # Multi-Classification-Prediction-UFO-Shape-Classifier-
 
-#### Problem Statement
+### Problem Statement
 
 The goal of this project is to classify UFO sightings based on their shapes and identify potential trends or patterns using machine learning.
 
-#### Data Source and Background
+### Data Source and Background
 
 The dataset for this project is sourced from Kaggle and contains over 80,000 reports of UFO sightings over the last century. The dataset includes city, state, time, description, and duration of each sighting, with two versions available: scrubbed and complete. The complete data includes entries with missing or erroneous information.
 
@@ -14,7 +14,7 @@ The dataset for this project is sourced from Kaggle and contains over 80,000 rep
 
 There are two versions of this dataset: scrubbed and complete. The complete data includes entries where the location of the sighting was not found or blank (0.8146%) or have an erroneous or blank time (8.0237%). Since the reports date back to the 20th century, some older data might be obscured. Data contains city, state, time, description, and duration of each sighting.
 
-#### Importance of the Question:
+### Importance of the Question:
 
 **Inspiration**
 
@@ -34,7 +34,7 @@ There are two versions of this dataset: scrubbed and complete. The complete data
 - Cultural Impact: UFO sightings are a part of modern folklore and cultural identity. This project can provide a data-driven narrative that complements anecdotal evidence, enriching cultural and historical contexts.
 
 
-#### Techniques Used
+### Techniques Used
 
 1. Data Preprocessing:
   - Cleaning and preparing the data.
