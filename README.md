@@ -23,31 +23,31 @@ There are two versions of this dataset: scrubbed and complete. The complete data
 3. Do clusters of UFO sightings correlate with landmarks, such as airports or government research centers?
 4. What are the most common UFO descriptions?
 
-- Understanding the patterns and classifications of UFO sightings has several important implications:
+    - Understanding the patterns and classifications of UFO sightings has several important implications:
 
-- Public Interest and Safety: By identifying patterns in UFO sightings, we can address public curiosity and concerns. If certain shapes or trends correlate with specific times or locations, authorities can better manage public safety and information dissemination.
+    - Public Interest and Safety: By identifying patterns in UFO sightings, we can address public curiosity and concerns. If certain shapes or trends correlate with specific times or locations, authorities can better manage public safety and information dissemination.
 
-- Scientific Inquiry: This research can contribute to the broader scientific community's understanding of unexplained aerial phenomena. By providing a systematic analysis of UFO sightings, we add to the body of knowledge that may inspire further research and technological advancements.
+    - Scientific Inquiry: This research can contribute to the broader scientific community's understanding of unexplained aerial phenomena. By providing a systematic analysis of UFO sightings, we add to the body of knowledge that may inspire further research and technological advancements.
 
-- Policy Making: Insights from this analysis can aid governmental and defense agencies in resource allocation and preparedness. Recognizing patterns in sightings might help in developing protocols for investigation and response.
+    - Policy Making: Insights from this analysis can aid governmental and defense agencies in resource allocation and preparedness. Recognizing patterns in sightings might help in developing protocols for investigation and response.
 
-- Cultural Impact: UFO sightings are a part of modern folklore and cultural identity. This project can provide a data-driven narrative that complements anecdotal evidence, enriching cultural and historical contexts.
+    - Cultural Impact: UFO sightings are a part of modern folklore and cultural identity. This project can provide a data-driven narrative that complements anecdotal evidence, enriching cultural and historical contexts.
 
 
 ### Techniques Used
 
 1. Data Preprocessing:
-  - Cleaning and preparing the data.
-  - Handling missing values and standardizing formats.
+    - Cleaning and preparing the data.
+    - Handling missing values and standardizing formats.
 
 2. Exploratory Data Analysis (EDA):
-  - Initial examination to uncover basic patterns, anomalies, and insights.
+    - Initial examination to uncover basic patterns, anomalies, and insights.
 
 3. Feature Engineering:
-  - Creating relevant features to improve model performance.
+    - Creating relevant features to improve model performance.
 
 4. Machine Learning Models:
-  - Multi-Class Classification: Using algorithms like Decision Trees, Random Forest, Support Vector Machines (SVM), and Neural Networks to classify UFO shapes.
-  - Clustering: Using methods like K-Means and DBSCAN to identify patterns and trends.
+    - Multi-Class Classification: Using algorithms like Decision Trees, Random Forest, Support Vector Machines (SVM), and Neural Networks to classify UFO shapes.
+    - Clustering: Using methods like K-Means and DBSCAN to identify patterns and trends.
 
 
