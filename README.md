@@ -199,11 +199,65 @@ The max duration of a sighting is 97836000.0 seconds, the minimum duration is 0.
 
 ## Feature Analysis
 
+After cleaning the UFO sightings dataset and ensuring the integrity of its features, the next step involves exploring potential relationships and trends among these features.
+
+
+**UFO sightings change over time**
+
+![sighting increase over time](./Images/sighting%20increase%20by%20country%20over%20time.png)
+
+The plot illustrates the temporal trends in UFO sightings across different countries, focusing on the United States compared to other countries where sightings are relatively consistent over time. The trend shows a notable increase in UFO sightings over time in the United States. This could indicate either a genuine increase in sightings or potentially more comprehensive reporting and data collection methods over the years. In contrast, sightings in other countries appear relatively consistent across the years. This observation may stem from several factors, including varying levels of public interest, reporting protocols, or cultural differences in UFO reporting and interpretation. The consistency observed in other countries could also be influenced by the availability of data. If data collection methods or reporting standards differ significantly between countries, it could lead to disparities in the number of recorded sightings.
 
 
 
+**Exploring UFO obervations by Cities**
+
+1. Unique Cities: There are 16,833 unique cities recorded in the dataset.
+
+2. Observation Counts:
+  - Less than 10 Observations: 15,347 cities fall into this category, indicating a majority of cities have relatively few recorded UFO sightings.
+  - More than 100 Observations: Only 56 cities have 100 or more recorded UFO sightings, representing a smaller subset of cities with more frequent sightings.
+
+3. Summary Table: The table summarizes the distribution of cities based on the number of UFO observations:
+
+![sightings by city](./Images/sightings%20by%20city%20table.png)
+
+![city sightings pie chart](./Images/city%20sightings%20pie%20chart.png)
+
+The pie chart visually represents these categories, illustrating the proportion of cities in each observation range. It shows that the vast majority of cities (over 60%) have only 1 recorded UFO observation, highlighting the variability and sparse nature of UFO sighting reports across different cities.
+
+This analysis provides insights into the distribution of UFO sightings across cities, emphasizing the prevalence of cities with few sightings and a smaller number of cities with more frequent UFO observations.
 
 
+The cities below had the highest reported sightings in the entire dataset:
+
+city           # of sighting
+
+seattle        456
+phoenix        420
+las vegas      347
+portland       347
+los angeles    337
+san diego      311
+houston        281
+chicago        250
+tucson         231
+
+**Below Scatter plots shows the data distribution with respect to relationships between different features**
+
+1. Duration of sightings of different UFO shapes by country
+
+![Duration of sightings of different UFO shapes by country](./Images/Duration%20of%20sightings%20of%20different%20UFO%20shapes%20by%20country.png)
+
+2. latitude and longitude of sightings of different UFO shapes by country
+
+![latitude and longitude of sightings of different UFO shapes by country](./Images/latitude%20and%20longitude%20of%20sightings%20of%20different%20UFO%20shapes%20by%20country.png)
+
+3. Sightings distribution by country
+
+![Sightings distribution by country](./Images/sightings%20by%20country%20.png)
+
+- Due to a high skewed distribution of country datapoints, it will be excluded from modeling.
 
 
 
