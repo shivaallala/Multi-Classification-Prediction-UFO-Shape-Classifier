@@ -120,7 +120,87 @@ The obervations for changing and formation are also similar when viewing comment
 
 From these observation, let us impute some of the classes and combine with their counterpart. We will selected one class and name and map to the other while maintain all other attributes integrity. Combining synonymous classes in your dataset based on observed similarities is a reasonable idea, particularly when dealing with categorical data where overlapping or synonymous categories can add noise and reduce the clarity of analysis. Below is the reduced and imputed ufo shape feature details.
 
+shape_mapping = {
+    'circle': 'disk',
+    'egg': 'oval',
+    'cylinder': 'cigar',
+    'unknown': 'other',
+    'formation': 'changing'
+}
+
 ![cleaned ufo shape feature](./Images/cleaned%20ufo%20shape%20feature.png)
+
+
+##### Benefits
+
+  - Data Simplification: Reducing the number of classes makes the dataset simpler and more manageable, which can improve the performance of your clustering algorithms and make the results easier to interpret.
+  - Increased Sample Size: By merging similar categories, you increase the sample size of the combined class, which can lead to more robust statistical analyses.
+  - Reduced Redundancy: Eliminating synonymous categories helps in reducing redundancy in the dataset, which can improve the overall quality of the data.
+
+##### Considerations
+
+  - Loss of Specificity: While combining classes can simplify the data, it might also lead to a loss of specific information that could be valuable. For instance, the distinction between 'disk' and 'circle' might carry some nuances that are lost when combined.
+  - Validation: Ensure that the mappings are validated by domain experts if possible. What might seem synonymous to a layperson could have subtle differences in a specialized field like UFO sightings.
+  - Consistency: Make sure the mappings are applied consistently across the dataset to avoid introducing new inconsistencies.
+
+
+**Impute state and county features**
+
+1. To address inconsistencies and missing values in the state and country features of the UFO sightings dataset, several steps were taken. Initially, country codes were mapped to their respective full names (e.g., 'us' to 'United States') to prevent ambiguity with state abbreviations. This mapping ensured clarity in distinguishing between country and state values.
+
+country_mapping = {
+    'us': 'United States',
+    'ca': 'Canada',
+    'gb': 'United Kingdom',
+    'de': 'Germany',
+    'au': 'Australia'
+}
+
+![country distribution](./Images/county%20distribution.png)
+
+
+2. Upon examining instances where the country was null but the state was populated, it was observed that certain states like 'tx' (Texas) were mistakenly treated as countries. Logical imputation was applied, where if a state belonged to the US or Canada based on predefined lists of state abbreviations and Canadian provinces, it was assigned the corresponding country name.
+
+  - Below is country and state feature where country is NA
+
+![Country is NA](./Images/country%20is%20NA.png)
+
+
+3. Further investigation revealed inconsistencies in non-US and non-Canada countries where state values were either missing or incorrectly mapped (e.g., 'nc' mapped to 'gb' for United Kingdom). To rectify this, a custom function was developed to correctly map state values to their respective countries. States within these countries were standardized to avoid misinterpretation of the data.
+
+  - Understanding states within non US or Canada countries
+
+![US states mapped to Non-US countries](./Images/US%20states%20mapped%20to%20non%20US%20countries.png)
+
+
+4. After applying these transformations and imputations, remaining rows with null values were dropped to ensure dataset completeness and integrity. The resulting ufo_clean dataset now contains standardized state and country information suitable for further analysis and modeling, reducing ambiguity and ensuring accurate representation of geographical attributes in UFO sighting reports.
+
+![states mapped](./Images/states%20mapped%20to%20countries.png)
+
+
+**Duration (seconds) - removing outliers**
+
+![duration distribution](./Images/duration%20distribtuion.png)
+
+The max duration of a sighting is 97836000.0 seconds, the minimum duration is 0.001 seconds and the average duration is 7877.286460723777 seconds. we can see that there are some values for duration that are extreme values which can impact the models and training. We can preform IQR method to rid outliers but the extreme outliers can also impact lower bound and upper bound when calculating 25% and 75% quantiles. Lets rid of extreme outliers using percentile method. Below is the distribution after removing extreme outliers. After removing outliers max duration of a sighting is 7200.0 seconds, the minimum duration is 1.5 seconds and the average duration is 611.0101017590368 seconds. 
+
+![after duration distribution](./Images/after%20duration%20distribution.png)
+
+![After duration dis boxplot](./Images/After%20duration%20dis%20boxplot.png)
+
+**Dataset after initial cleaning and removing remaining null values**
+
+![cleaned dataset info](./Images/cleaned%20dataset%20info.png)
+
+- cleaned dataset statistical summary for numerical data
+
+![stat summary](./Images/stat%20summary%20cleaned%20dataset.png)
+
+
+## Feature Analysis
+
+
+
 
 
 
