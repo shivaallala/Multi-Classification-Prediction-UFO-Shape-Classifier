@@ -231,17 +231,7 @@ This analysis provides insights into the distribution of UFO sightings across ci
 
 The cities below had the highest reported sightings in the entire dataset:
 
-city           # of sighting
-
-seattle        456
-phoenix        420
-las vegas      347
-portland       347
-los angeles    337
-san diego      311
-houston        281
-chicago        250
-tucson         231
+![cities with highest sightings](./Images/city%20with%20hightest%20sightings.png)
 
 **Below Scatter plots shows the data distribution with respect to relationships between different features**
 
