@@ -250,6 +250,90 @@ The cities below had the highest reported sightings in the entire dataset:
 - Due to a high skewed distribution of country datapoints, it will be excluded from modeling.
 
 
+## Modeling
+
+Before we construct any classification models let us preprocess our data. Preprocessing the UFO dataset is essential to ensure that our data is in a suitable format for machine learning models. Initially, we extracted additional features from the datetime column, specifically the year and month, which can provide valuable temporal insights. The target variable, 'shape', was encoded using LabelEncoder to transform categorical shape labels into numerical values required for model training. For the features used in modeling, we selected 'state' and 'duration (seconds)', ensuring to standardize the numeric feature 'duration (seconds)' using StandardScaler to scale data for consistent model performance. Categorical feature 'state' was encoded using OneHotEncoder to convert state names into binary vectors, preserving categorical information without imposing numerical order.
+
+![traintestsplit](./Images/traintestsplit.png)
+
+Splitting the preprocessed data into training and testing sets is crucial to evaluate model performance on unseen data accurately. By dividing the dataset into 70% training and 30% testing subsets, we ensure that our models can learn patterns from the training data while being evaluated on independent test data to assess generalization. Preprocessing facilitates data standardization and transformation, ensuring that models can effectively interpret and learn from the data without biases from differing scales or formats. Ultimately, preprocessing prepares our UFO dataset for robust machine learning model construction and evaluation, enabling us to make accurate predictions about UFO shapes based on geographical and temporal characteristics.
 
 
+### RandomForest Classifier
+
+Random Forests stand out as a robust choice for multi-class classification tasks due to their versatile capabilities. They excel in handling complex data structures and managing overfitting through ensemble learning, where multiple decision trees collectively contribute to robust predictions. This approach not only enhances generalization but also provides valuable insights into feature importance, crucial for understanding the driving factors behind each class prediction. Moreover, Random Forests are known for their reliability in diverse datasets, making them a powerful tool for accurate and scalable multi-class classification tasks.
+
+The provided pipeline encapsulates a streamlined approach to machine learning model building in Python, particularly in a Jupyter notebook environment. It integrates both preprocessing and modeling steps into a single coherent workflow. The ColumnTransformer within the preprocessing step allows for simultaneous handling of numerical (StandardScaler) and categorical (OneHotEncoder) features. This ensures that all necessary transformations are applied consistently across different types of data before feeding them into the classifier.
+
+![randomforest pipeine](./Images/randomforest%20pipeline.png)
+
+**Randomforest model classification report**
+
+- Training data accuracy 
+
+![Train score](./Images/randomforest%20train%20scores.png)
+
+  - Precision: The precision measures how many of the predicted instances for each class are actually correct. Here, precision scores are generally low across most classes, indicating a high rate of false positives. For instance, classes like 0, 1, 2, 3, etc., have precision values ranging from 0.07 to 0.67. This suggests that the model's predictions for these classes have a high chance of being incorrect.
+  - Recall: Recall measures how well the model captures instances of each class. It is also generally low, with values ranging from 0.01 to 0.71. This indicates that the model misses a significant number of instances of each class.
+  - F1-score: The F1-score is the harmonic mean of precision and recall, providing a balanced measure between them. The F1-scores are generally low across classes, ranging from 0.00 to 0.38.
+  - Support: Indicates the number of instances of each class in the training set.
+
+- Test data accuracy 
+
+![Test scores](./Images/random%20forest%20test%20scores.png)
+
+  - The pattern in the test set classification report is similar to the training set.
+  - Precision, Recall, and F1-score: The metrics show similarly low values across most classes, indicating that the model's performance did not improve significantly when applied to unseen data. Precision values range from 0.00 to 0.22, recall from 0.00 to 0.61, and F1-score from 0.00 to 0.32.
+  - Support: Indicates the number of instances of each class in the test set.
+
+Precision is crucial because it tells us how reliable the positive predictions are for each class. In a multi-class classification problem like this, low precision scores indicate that when the model predicts a particular shape, it is often incorrect. This can lead to misclassification and unreliable predictions in real-world applications. Low precision can be problematic, especially if the consequences of misclassification are significant (e.g., in medical diagnoses or financial predictions). Improving precision involves reducing false positives, which often requires refining the model's decision boundaries or addressing class imbalance issues in the dataset.
+
+while the Random Forest model shows some ability to predict classes, the low precision scores indicate a need for further model refinement or consideration of different algorithms or data preprocessing techniques to improve accuracy and reliability. Using GridSearch to explore other alorithms to train our data can help identify the best configuration that can handle this multi-class classification problem. 
+
+## Exploring other algorithms with GridSearch 
+
+The GridSearch process explored six different classification models. 
+
+1. Logistic Regression, KNN, and Decision Tree:
+
+- These initial algorithms were chosen for their versatility and interpretability. They were run with varying hyperparameters to identify the best configuration that could handle the multi-class classification problem posed by UFO shapes.
+
+2. Random Forest Classifier, XGBoost, and SVC (Support Vector Classifier):
+
+- These algorithms were selected based on their ability to handle complex data interactions, non-linear relationships, and high-dimensional data. Each algorithm was tuned using GridSearch to optimize its performance.
+
+**Importance of Trying Different Algorithms**
+
+- Diverse Capabilities: Each algorithm has unique strengths. For instance, Random Forests are robust against overfitting and handle categorical features well. XGBoost excels in boosting weak learners and can capture complex interactions. SVMs are effective in high-dimensional spaces with complex decision boundaries.
+
+- Performance Variability: The goal was to test if more complex algorithms could better capture the underlying patterns in the UFO dataset that simpler models might miss. By comparing results across different algorithms, we gain insights into which approach might be most effective for this specific classification task.
+
+**Are They Good for Multi-Class Modeling?**
+
+- Yes, but with nuances: All selected algorithms (Logistic Regression, KNN, Decision Tree, Random Forest, XGBoost, SVC) are capable of handling multi-class classification tasks. They differ in their approach to handling class imbalances, non-linear relationships, and feature interactions.
+
+- Algorithm Suitability: The suitability depends on factors such as dataset size, feature complexity, and computational resources. For instance, SVMs are memory-intensive but effective in high-dimensional data, while Decision Trees are less computationally intensive but can overfit without proper pruning.
+
+![model preformance](./Images/models%20preformance.png)
+
+![training time](./Images/training%20time%20comparison.png)
+
+
+**Reasons for Low Scores**
+
+- Data and Feature Considerations:
+  - Data Imbalance: The UFO dataset likely has imbalanced class distributions among UFO shapes. This imbalance can skew model training, leading to poor performance, especially on minority classes.
+
+  - Feature Relevance: The features used (e.g., state, duration, year) may not sufficiently capture the distinguishing characteristics of UFO shapes. If there are no strong correlations between these features and the target (UFO shapes), models struggle to generalize and predict accurately.
+
+  - Complex Relationships: UFO shape classification might inherently involve complex, non-linear relationships between features and shapes. Linear models like Logistic Regression may struggle to capture these complexities, while more advanced models like Random Forests and XGBoost can potentially learn these relationships better.
+
+**Theoretical Insight**
+- Modeling Challenges: UFO shape classification presents challenges typical of real-world classification problems: imbalanced data, complex relationships, and feature relevance. Addressing these challenges involves:
+
+  1. Feature Engineering: Creating more relevant features that better differentiate UFO shapes could improve model performance.
+
+  2. Algorithm Selection: Choosing algorithms that can handle non-linear relationships and class imbalances effectively.
+
+  3. Model Evaluation: Precision, recall, and F1-score provide insights into model performance beyond simple accuracy, especially important when dealing with imbalanced classes.
 
