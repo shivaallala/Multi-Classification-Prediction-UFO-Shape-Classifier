@@ -362,6 +362,7 @@ The performance differences among these models stem from several factors:
 ![training time](./Images/training%20time%20comparison.png)
 
 **Theoretical Insight**
+
 - Modeling Challenges: UFO shape classification presents challenges typical of real-world classification problems: imbalanced data, complex relationships, and feature relevance. Addressing these challenges involves:
 
   1. Feature Engineering: Creating more relevant features that better differentiate UFO shapes could improve model performance.
