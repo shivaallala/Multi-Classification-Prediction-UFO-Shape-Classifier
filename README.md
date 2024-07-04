@@ -294,17 +294,17 @@ while the Random Forest model shows some ability to predict classes, the low pre
 
 The GridSearch process explored six different classification models. 
 
-![Gs models 1](./Images/GS%20model%201.png)
-
-![GS models 2](./Images/GS%20models%202.png)
-
 1. Logistic Regression, KNN, and Decision Tree:
 
   - These initial algorithms were chosen for their versatility and interpretability. They were run with varying hyperparameters to identify the best configuration that could handle the multi-class classification problem posed by UFO shapes.
 
+![Gs models 1](./Images/GS%20model%201.png)
+
 2. Random Forest Classifier, XGBoost, and SVC (Support Vector Classifier):
 
   - These algorithms were selected based on their ability to handle complex data interactions, non-linear relationships, and high-dimensional data. Each algorithm was tuned using GridSearch to optimize its performance.
+
+![GS models 2](./Images/GS%20models%202.png)
 
 **Importance of Trying Different Algorithms**
 
