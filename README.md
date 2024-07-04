@@ -294,6 +294,10 @@ while the Random Forest model shows some ability to predict classes, the low pre
 
 The GridSearch process explored six different classification models. 
 
+![Gs models 1](./Images/GS%20model%201.png)
+
+![GS models 2](./Images/GS%20models%202.png)
+
 1. Logistic Regression, KNN, and Decision Tree:
 
   - These initial algorithms were chosen for their versatility and interpretability. They were run with varying hyperparameters to identify the best configuration that could handle the multi-class classification problem posed by UFO shapes.
@@ -338,7 +342,7 @@ The GridSearch process explored six different classification models.
 - Decision Tree:
   - The Decision Tree model, characterized by its simplicity and interpretability, showed comparable performance to more complex models. With a shallow tree depth (max_depth=5) and using the Gini impurity criterion, it achieved a recall of 0.212 and an accuracy of 0.210. The precision_weighted_score was 0.173, indicating reasonable precision in classification tasks. Training time was exceptionally short at 1.20 seconds, making it the most computationally efficient model tested. The decision tree's performance suggests effective handling of basic relationships within the data but may have underfitted due to its limited depth, potentially missing more complex patterns.
 
-**reasons for preformance**
+**Reasons for preformance**
 
 The performance differences among these models stem from several factors:
 
