@@ -296,37 +296,70 @@ The GridSearch process explored six different classification models.
 
 1. Logistic Regression, KNN, and Decision Tree:
 
-- These initial algorithms were chosen for their versatility and interpretability. They were run with varying hyperparameters to identify the best configuration that could handle the multi-class classification problem posed by UFO shapes.
+  - These initial algorithms were chosen for their versatility and interpretability. They were run with varying hyperparameters to identify the best configuration that could handle the multi-class classification problem posed by UFO shapes.
 
 2. Random Forest Classifier, XGBoost, and SVC (Support Vector Classifier):
 
-- These algorithms were selected based on their ability to handle complex data interactions, non-linear relationships, and high-dimensional data. Each algorithm was tuned using GridSearch to optimize its performance.
+  - These algorithms were selected based on their ability to handle complex data interactions, non-linear relationships, and high-dimensional data. Each algorithm was tuned using GridSearch to optimize its performance.
 
 **Importance of Trying Different Algorithms**
 
-- Diverse Capabilities: Each algorithm has unique strengths. For instance, Random Forests are robust against overfitting and handle categorical features well. XGBoost excels in boosting weak learners and can capture complex interactions. SVMs are effective in high-dimensional spaces with complex decision boundaries.
+  - Diverse Capabilities: Each algorithm has unique strengths. For instance, Random Forests are robust against overfitting and handle categorical features well. XGBoost excels in boosting weak learners and can capture complex interactions. SVMs are effective in high-dimensional spaces with complex decision boundaries.
 
-- Performance Variability: The goal was to test if more complex algorithms could better capture the underlying patterns in the UFO dataset that simpler models might miss. By comparing results across different algorithms, we gain insights into which approach might be most effective for this specific classification task.
+  - Performance Variability: The goal was to test if more complex algorithms could better capture the underlying patterns in the UFO dataset that simpler models might miss. By comparing results across different algorithms, we gain insights into which approach might be most effective for this specific classification task.
 
 **Are They Good for Multi-Class Modeling?**
 
-- Yes, but with nuances: All selected algorithms (Logistic Regression, KNN, Decision Tree, Random Forest, XGBoost, SVC) are capable of handling multi-class classification tasks. They differ in their approach to handling class imbalances, non-linear relationships, and feature interactions.
+  - Yes, but with nuances: All selected algorithms (Logistic Regression, KNN, Decision Tree, Random Forest, XGBoost, SVC) are capable of handling multi-class classification tasks. They differ in their approach to handling class imbalances, non-linear relationships, and feature interactions.
 
-- Algorithm Suitability: The suitability depends on factors such as dataset size, feature complexity, and computational resources. For instance, SVMs are memory-intensive but effective in high-dimensional data, while Decision Trees are less computationally intensive but can overfit without proper pruning.
+  - Algorithm Suitability: The suitability depends on factors such as dataset size, feature complexity, and computational resources. For instance, SVMs are memory-intensive but effective in high-dimensional data, while Decision Trees are less computationally intensive but can overfit without proper pruning.
 
-![model preformance](./Images/models%20preformance.png)
+### Model preformance results
 
-![training time](./Images/training%20time%20comparison.png)
+![model results df](./Images/models%20preformance.png)
 
+### Analysis of Model Performance
+
+- RandomForestClassifier:
+  - The RandomForestClassifier exhibited moderate performance across various metrics. With parameters set to max_depth=10 and n_estimators=500, it achieved a recall of 0.212 and an accuracy of 0.210. The precision_weighted_score was 0.155, indicating a reasonable balance between capturing patterns in the data and avoiding overfitting. Training time was relatively long at 121.51 seconds, reflecting the ensemble nature of Random Forests and the number of trees involved. This model likely benefited from its ability to handle complex relationships and feature interactions inherent in the dataset, making it a robust choice for multi-class classification tasks where linear separability is limited.
+
+- XGBClassifier:
+  - The XGBClassifier, known for its gradient boosting approach, showed performance metrics similar to the RandomForestClassifier but with slightly lower precision. It was optimized with a learning rate of 0.1 and 10 estimators. The model achieved a recall of 0.212 and an accuracy of 0.208, with a precision_weighted_score of 0.121. Training was quicker compared to RandomForestClassifier at 19.51 seconds, suggesting a trade-off between computational efficiency and model complexity. The choice of parameters might not have fully captured the intricate relationships within the data, potentially limiting its predictive power compared to other models.
+
+- SVC (Support Vector Classifier):
+  - The SVC struggled with the dataset's high dimensionality and class imbalance despite its capability to define hyperplanes for classification. With a regularization parameter C=0.1, it achieved a recall of 0.213 and an accuracy of 0.209. However, the precision_weighted_score was notably low at 0.067, indicating challenges in accurately predicting all classes. Training time was significantly longer at 614.84 seconds, highlighting the computational intensity of SVMs in high-dimensional spaces. The model's performance suggests limitations in effectively separating classes due to the complexity and distribution of feature data.
+
+- Logistic Regression:
+  - Logistic Regression, chosen for its simplicity and interpretability, showed consistent but relatively lower performance across all metrics. Regularized with C=0.01, it achieved a recall of 0.213 and an accuracy of 0.210. However, the precision_weighted_score was the lowest among all models at 0.044, indicating significant challenges in predicting class labels accurately. Training time was relatively short at 11.66 seconds, reflecting the model's computational efficiency but also its limitations in capturing complex non-linear relationships within the data.
+
+- KNN (K-Nearest Neighbors):
+  - KNN, a non-parametric method sensitive to local patterns, struggled with scalability and generalization in this dataset. Optimized with parameters leaf_size=10, n_neighbors=1000, and using distance-based weights, it achieved a recall of 0.188 and an accuracy of 0.191. The precision_weighted_score was 0.137, indicating moderate precision in classification. Training time was the longest among all models at 273.39 seconds, reflecting its computational demand in handling distance calculations across a large dataset. Despite its flexibility in capturing local patterns, KNN's performance suffered due to noise sensitivity and suboptimal parameter tuning.
+
+- Decision Tree:
+  - The Decision Tree model, characterized by its simplicity and interpretability, showed comparable performance to more complex models. With a shallow tree depth (max_depth=5) and using the Gini impurity criterion, it achieved a recall of 0.212 and an accuracy of 0.210. The precision_weighted_score was 0.173, indicating reasonable precision in classification tasks. Training time was exceptionally short at 1.20 seconds, making it the most computationally efficient model tested. The decision tree's performance suggests effective handling of basic relationships within the data but may have underfitted due to its limited depth, potentially missing more complex patterns.
+
+**reasons for preformance**
+
+The performance differences among these models stem from several factors:
+
+- Data Imbalance: The dataset likely had imbalanced classes among UFO shapes, challenging models to accurately predict less frequent shapes.
+
+- Feature Complexity: Features such as state, duration, and year may not have adequately captured the underlying patterns distinguishing UFO shapes, impacting model performance.
+
+- Model Suitability: Each algorithm's effectiveness depends on its ability to handle feature interactions, non-linearities, and class imbalances. Some models may excel where others struggle due to inherent assumptions and parameter choices.
 
 **Reasons for Low Scores**
 
 - Data and Feature Considerations:
-  - Data Imbalance: The UFO dataset likely has imbalanced class distributions among UFO shapes. This imbalance can skew model training, leading to poor performance, especially on minority classes.
+  1. Data Imbalance: The UFO dataset likely has imbalanced class distributions among UFO shapes. This imbalance can skew model training, leading to poor performance, especially on minority classes.
 
-  - Feature Relevance: The features used (e.g., state, duration, year) may not sufficiently capture the distinguishing characteristics of UFO shapes. If there are no strong correlations between these features and the target (UFO shapes), models struggle to generalize and predict accurately.
+  2. Feature Relevance: The features used (e.g., state, duration, year) may not sufficiently capture the distinguishing characteristics of UFO shapes. If there are no strong correlations between these features and the target (UFO shapes), models struggle to generalize and predict accurately.
 
-  - Complex Relationships: UFO shape classification might inherently involve complex, non-linear relationships between features and shapes. Linear models like Logistic Regression may struggle to capture these complexities, while more advanced models like Random Forests and XGBoost can potentially learn these relationships better.
+  3. Complex Relationships: UFO shape classification might inherently involve complex, non-linear relationships between features and shapes. Linear models like Logistic Regression may struggle to capture these complexities, while more advanced models like Random Forests and XGBoost can potentially learn these relationships better.
+
+![model preformance](./Images/models%20preformance.png)
+
+![training time](./Images/training%20time%20comparison.png)
 
 **Theoretical Insight**
 - Modeling Challenges: UFO shape classification presents challenges typical of real-world classification problems: imbalanced data, complex relationships, and feature relevance. Addressing these challenges involves:
@@ -337,3 +370,5 @@ The GridSearch process explored six different classification models.
 
   3. Model Evaluation: Precision, recall, and F1-score provide insights into model performance beyond simple accuracy, especially important when dealing with imbalanced classes.
 
+
+Choosing the appropriate model involves understanding these nuances and optimizing parameters to achieve the best performance metrics. Further refinement in feature engineering, model tuning, and potentially exploring ensemble methods could enhance classification accuracy and precision for predicting UFO shapes effectively in real-world scenarios. Each model's strengths and weaknesses provide valuable insights into their applicability and performance in handling complex classification tasks. Additionally, exploring insights from the comment feature through NLP techniques could yield new features and improve the predictive capabilities of the model for UFO shapes. Integrating NLP to analyze comment text data opens avenues for deeper understanding and more nuanced classification strategies.
