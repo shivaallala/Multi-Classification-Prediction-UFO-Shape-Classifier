@@ -316,7 +316,7 @@ The GridSearch process explored six different classification models.
 
 ### Model preformance results
 
-![model results df](./Images/models%20preformance.png)
+![model results df](./Images/model%20results%20df.png)
 
 ### Analysis of Model Performance
 
