@@ -1,4 +1,4 @@
-# Multi-Classification-Prediction-UFO-Shape-Classifier-
+# Multi-Classification-Prediction-UFO-Shape-Classifier
 
 ### Problem Statement
 
@@ -526,7 +526,7 @@ The preprocessed comment is then fed into a logistic regression model trained on
 Beyond prediction, the model serves a crucial role in testing and validating its performance on new, unseen data, ensuring it can generalize well to real-world examples of UFO sightings. In practical applications, this functionality could integrate into tools for reporting UFO sightings, providing immediate classification of UFO shapes based on user descriptions. This enhances user experience, particularly for researchers and enthusiasts who seek efficient categorization of sightings. Continuous improvement is key to enhancing the model's performance. Strategies like refining text preprocessing, experimenting with different models and parameters, augmenting training data, and integrating advanced NLP techniques could further boost accuracy and reliability. By evolving in these ways, the model aims to become a robust tool for analyzing and categorizing UFO sightings based on textual descriptions.
 
 
-## Next Steps
+## Next Steps & Improvements
 
 To further enhance this UFO shape classification model and potentially extend its capabilities towards applications like chatbots, we will need to consider the following. 
 
