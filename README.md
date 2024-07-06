@@ -503,16 +503,16 @@ The chi2 function from sklearn.feature_selection is used to calculate the chi-sq
 
 - Relevance and Importance
 
-  1. Feature Importance:
+1. Feature Importance:
     - The chi-square scores provide insight into which words (tokens) are most indicative of specific UFO shapes. For example, the high score for "diamond" indicates that the presence of the word "diamond" in the text is strongly associated with the "diamond" UFO shape.
 
-  2. Improving Model Performance:
+2. Improving Model Performance:
     - By identifying the most relevant tokens, feature selection can be used to reduce the dimensionality of the data, which can lead to improved model performance. This is because it helps the model focus on the most informative features and reduces noise from less important tokens.
 
-  3. Interpretability:
+3. Interpretability:
     - Understanding which words have the highest chi-square scores helps in interpreting the model. It provides a clear indication of why the model is making certain predictions, which is crucial for transparency and trust in the model's decisions.
 
-  4. Relevance in Classification:
+4. Relevance in Classification:
     - These scores help in refining the feature set used for training the model. By selecting features with high chi-square scores, the model can achieve better precision, recall, and f1-scores, as it is trained on the most relevant data.
 
 ### Model Use and Prediction Functionality
