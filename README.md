@@ -377,3 +377,78 @@ The performance differences among these models stem from several factors:
 
 
 Choosing the appropriate model involves understanding these nuances and optimizing parameters to achieve the best performance metrics. Further refinement in feature engineering, model tuning, and potentially exploring ensemble methods could enhance classification accuracy and precision for predicting UFO shapes effectively in real-world scenarios. Each model's strengths and weaknesses provide valuable insights into their applicability and performance in handling complex classification tasks. Additionally, exploring insights from the comment feature through NLP techniques could yield new features and improve the predictive capabilities of the model for UFO shapes. Integrating NLP to analyze comment text data opens avenues for deeper understanding and more nuanced classification strategies.
+
+## NLP Modeling
+
+Given the challenges in building a multi-class classification model to predict UFO shapes using existing algorithms, it is evident that the task requires more advanced techniques. The initial models demonstrated limited success, highlighting the complexity and vagueness of the data. This complexity necessitates a shift in approach. To address this, we are now focusing on the comments feature, which contains rich text data. By leveraging Natural Language Processing (NLP) techniques, we aim to extract meaningful insights from these comments. The goal is to transform the unstructured text into structured data, thereby developing new features that can be used in building an improved classification model.
+
+The preprocessing steps involve tokenization, lowercasing, removing punctuation and stopwords, and normalization through stemming or lemmatization. These steps clean and standardize the text, making it suitable for analysis. Once the text data is processed, it will be utilized to uncover patterns and develop features that can enhance the predictive power of the model. By applying NLP techniques, we hope to capture the nuances within the comments that relate to UFO shapes, ultimately creating a robust model capable of more accurate classification. This approach recognizes the value of text data and seeks to harness its potential to overcome the limitations faced by traditional classification algorithms.
+
+Let us start by seperating original data and extract the text data that we require. The process involves creating a new sub-dataset, ufo_nlp, from the cleaned UFO dataset ufo_clean, focusing on the shape and comments columns. The goal is to extract insights from the comments using Natural Language Processing (NLP) techniques to develop new features for building a classification model to predict UFO shapes.
+
+**Text Preprocessing Steps:**
+
+- Tokenization: Splitting the text into individual words or tokens.
+- Lowercasing: Converting all text to lowercase for consistency.
+- Removing Punctuation: Eliminating non-alphanumeric characters.
+- Removing Stopwords: Filtering out common words like "the", "and", "is" that add little meaning.
+- Normalization: Using stemming or lemmatization to reduce words to their base form (e.g., "running" to "run").
+
+**Implementation:**
+
+The preprocessing function preprocess_text applies these steps to each comment in the dataset. Necessary resources from the NLTK library are downloaded, and the function is applied to the comments column, resulting in a new column processed_comments that contains the cleaned and processed text.
+
+**Output:**
+
+The resulting dataset ufo_nlp includes three columns: shape, comments, and processed_comments. This processed text will be used to extract features that can be leveraged in building a more accurate classification model.
+
+![processed comments](./Images/processed%20comments.png)
+
+**Intent and Importance:**
+
+The intent behind this preprocessing is to clean and standardize the text data, making it suitable for further analysis and feature extraction. By processing the comments, we aim to uncover patterns and insights that can enhance the predictive power of the model. This step is crucial because textual data often contains valuable information that can significantly improve the performance of machine learning models when properly processed and analyzed. Applying NLP techniques helps in transforming unstructured text into structured data that can be integrated into the predictive modeling process, potentially leading to more accurate predictions of UFO shapes.
+
+
+**Indentifying most common words in the dataset**
+
+We identified the most common words in the dataset by combining all processed comments into a single string, tokenizing the text, and calculating word frequencies using the Counter class from Python's collections module. The resulting DataFrame revealed about 34,205 unique words or characters. Notably, many words appeared only once, while some, such as the number '44', appeared thousands of times, indicating anomalies that should be addressed.
+
+![frequent words in comments](./Images/nlp%20frequent%20words%20in%20comments.png)
+
+The top words by frequency include '44', 'light', 'object', 'sky', and 'bright'. These frequent terms suggest common themes in the UFO sightings. To refine our text data for modeling, we need to remove anomalies and infrequent words, focusing on relevant and meaningful terms that contribute to the classification task. This step is crucial for improving the accuracy and effectiveness of our NLP-based classification model.
+
+
+## NLP LogisticRegression with (TF-IDF Vectorizer)
+
+**Logistic Regression**
+
+  - Logistic Regression is selected due to its efficiency in multi-class classification tasks, ease of implementation, and ability to provide interpretable results. It models the probability of the target class based on the input features, allowing us to understand the contribution of each word to the classification decision. Moreover, it performs well with high-dimensional data, which is typical in text classification problems.
+
+**TF-IDF Vectorizer**
+
+  - The TF-IDF vectorizer transforms the text data into a matrix of TF-IDF features, which helps in identifying and quantifying the importance of words in the dataset. By focusing on the term frequency (TF) and inverse document frequency (IDF), it ensures that common but less informative words receive lower weights, while rare but significant words receive higher weights. This transformation is crucial for text classification as it highlights the most relevant features, improving the model's ability to distinguish between different classes based on meaningful text patterns.
+
+
+We are now creating a sub-dataset (ufo_nlp) to explore the relationship between tokenized text data and UFO shapes. First, we preprocess the comments to transform them into a structured format suitable for analysis. Then, we encode the target variable (UFO shapes) using label encoding.
+
+Next, we utilize the TF-IDF (Term Frequency-Inverse Document Frequency) vectorizer to convert the text data into numerical features. This transformation allows us to measure the importance of words in the comments relative to the entire dataset, making it easier to capture the most relevant features for classification. TF-IDF helps us identify significant words by assigning higher weights to words that are frequent in a document but infrequent across the corpus, thus highlighting words that are more likely to carry meaningful information about the UFO shapes.
+
+![Tfidf Vectorizer code](./Images/TFidf_vectorizer%20code.png)
+
+After transforming the text data, we train a Logistic Regression model on the TF-IDF features. Logistic Regression is chosen for its simplicity, interpretability, and effectiveness in handling multi-class classification problems. It helps us understand the linear relationship between the input features (words) and the target variable (UFO shapes).
+
+The model's coefficients are then extracted to create a relationship_df DataFrame, which stores the relationships between the words and each UFO shape class. This DataFrame provides insights into which words are most indicative of each UFO shape. For instance, a positive coefficient for a word under a specific shape category indicates that the presence of that word increases the likelihood of that shape being predicted.
+
+![tfidf relationship df](./Images/tfidf%20relationship%20df.png)
+
+The relationship_df DataFrame provides a detailed view of how each word contributes to predicting each UFO shape. For example, positive and negative coefficients indicate the strength and direction of the relationship between words and shape classes. By analyzing this DataFrame, we can gain insights into the vocabulary that is most associated with each UFO shape, helping us understand the linguistic patterns and features that are most predictive of each category. Overall, this process of leveraging NLP techniques and Logistic Regression allows us to derive meaningful insights from the text data and improve our UFO shape classification model.
+
+
+**Summary of top strings associated for each UFO Shape**
+
+The top words for each UFO shape reveal significant linguistic patterns that correspond to the physical descriptions of the shapes. For example, words like "changing," "morphing," and "shifting" for the "changing" shape, and "cigar," "cylinder," and "tube" for the "cigar" shape accurately reflect the dynamic and elongated forms respectively. This pattern is consistent across all shapes, with terms like "triangle" and "triangular" for "triangle," "oval" and "egg" for "oval," and "disk" and "saucer" for "disk" indicating the corresponding forms. These word associations suggest that the top words strongly relate to the actual meanings of each UFO shape, influencing the classification by highlighting characteristic descriptors, which could be a potential loophole if these words are overly relied upon in the model without considering broader context.
+
+![Top words 1](./Images/Top%20words%201.png)    ![Top words 2](./Images/Top%20words%202.png)   ![Top words 3](./Images/Top%20words%203.png)
+
+![Top words 4](./Images/Tops%20words%204.png)   ![Top words 5](./Images/Top%20words%205.png)
+
